@@ -103,7 +103,8 @@ func NewClient(...) (*Client, error) {
 ```
 
 ## Method chaining
-move error to suffix have other benefit that separate return value and error. now we can Method chaining. Some people dislike Method Chaining but I like it.
+move error to suffix have other benefit that separate return value and error. now we can Method chaining. 
+Some people dislike Method Chaining but I like it.
 
 ```dart 
 func div(a, b float64) (float64, error) {...}
