@@ -102,5 +102,22 @@ func NewClient(...) (*Client, error) {
 }
 ```
 
+## Method chaining
+move error to suffix have other benefit that separate return value and error. now we can Method chaining. Some people dislike Method Chaining but I like it.
+
+```dart 
+func div(a, b float64) (float64, error) {...}
+func sum(a, b float64) (float64, error) {...}
+
+func handler() (float64, error){
+  res := sum(div(0,7), div(4,5)) #err
+  if err != nil{
+      log.Error("do calc err: ", err)
+      return 0, err 
+  }
+  return res, nil
+}
+```
+
 ## some link
 https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling.md
