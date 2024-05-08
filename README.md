@@ -20,16 +20,28 @@ n, err := io.Write(x)
 if err != nil {
    return 0, fmt.Error("tcp closed: %w", err)
 }
+
+// 5. panic err
+n, err := io.Write(x)
+if err != nil{
+    panic(err)
+}
 ```
 
 now 
 ```python
 n := io.Write(x) #err       // 1. err as value
+
 n := io.Write(x) #@ignore   // 2. ignore error
 
 n := io.Write(x) #@done     //  3. return error immediately、
 
 n := io.Write(x) #@wrap("tcp closed: %w") // 4. wrap additional information
-```
 
+n := io.Write(x) #@must     // 5. panic err
+```
+1. err as value. everything is like before. just error at suffix.
+2. ignore error. 
+
+5. Many third-party libraries have `MustXxx()` and `Xxx()` two sets api. Now we just need only one.
 
