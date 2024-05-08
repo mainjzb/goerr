@@ -1,5 +1,9 @@
 # goerr
-golang error design
+English is not my native language, so it may be a bit strange for you to read this article
+
+Make `#` as error symbol, I believe people can learn and understand it quickly. (Maybe other symbol replace it)
+
+`#@` as handler error symbol. Help people read code.
 
 I have read [go/issues/21161](https://github.com/golang/go/issues/21161)
 My imaging is something similar to that.
@@ -48,3 +52,7 @@ n := io.Write(x) #@must     // 5. panic err
 5. Many third-party libraries have `MustXxx()` and `Xxx()` two sets api. Now we just need only one. Just like `go` keyword, we no longer need sync and async functions.
 
 People should reduce the discussion of compilation details. Focusing on achieving agreement on lang style.
+
+
+## some link
+https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling.md
