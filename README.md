@@ -41,7 +41,8 @@ n := io.Write(x) #@wrap("tcp closed: %w") // 4. wrap additional information
 n := io.Write(x) #@must     // 5. panic err
 ```
 1. err as value. everything is like before. just error at suffix.
-2. ignore error. 
+2. ignore error. make it no easier to ignore error than before. Encourage people with additional information.
+3. return error immediately、Many times, Especially in libiary. we just need returen error nothing need to do. For example: [url.parseAuthority](https://github.com/golang/go/blob/master/src/net/url/url.go#L586)
 
 5. Many third-party libraries have `MustXxx()` and `Xxx()` two sets api. Now we just need only one.
 
