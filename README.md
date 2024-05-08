@@ -33,7 +33,7 @@ if err != nil{
 ```
 
 now 
-```python
+```dart
 n := io.Write(x) #err       // 1. err as value
 
 n := io.Write(x) #@ignore   // 2. ignore error
@@ -53,6 +53,54 @@ n := io.Write(x) #@must     // 5. panic err
 
 People should reduce the discussion of compilation details. Focusing on achieving agreement on lang style.
 
+## example
+
+[go/issues/21161](https://github.com/golang/go/issues/21161#issuecomment-390216685)
+```dart
+func NewClient(...) (*Client, error) {
+	var err error
+
+	listener := net.Listen("tcp4", listenAddr) #@done
+	defer func() {
+		if err != nil {
+			listener.Close()
+		}
+	}()
+
+	conn := ConnectionManager{}.connect(server, tlsConfig) #@done
+	defer func() {
+		if err != nil {
+			conn.Close()
+		}
+	}()
+
+	if forwardPort == 0 {
+		env := environment.GetRuntimeEnvironment() #err
+		if err != nil {
+			log.Printf("not forwarding because: %v", err)
+		} else {
+			forwardPort = env.PortToForward() #err
+			if err != nil {
+				log.Printf("env couldn't provide forward port: %v", err)
+			}
+		}
+	}
+	var forwardOut *forwarding.ForwardOut
+	if forwardPort != 0 {
+		u := url.Parse(fmt.Sprintf("http://127.0.0.1:%d", forwardPort)) #@ignore
+		forwardOut = forwarding.NewOut(u)
+	}
+
+	client := &Client{...}
+
+	toServer := communicationProtocol.Wrap(conn)
+	toServer.Send(&client.serverConfig) #@done
+	toServer.Send(&stprotocol.ClientProtocolAck{ClientVersion: Version}) #@done
+
+	client.session = communicationProtocol.FinalProtocol(conn) #@done
+	return client, nil
+}
+```
 
 ## some link
 https://go.googlesource.com/proposal/+/master/design/go2draft-error-handling.md
