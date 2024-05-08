@@ -102,6 +102,34 @@ func NewClient(...) (*Client, error) {
 }
 ```
 
+[url.parseAuthority](https://github.com/golang/go/blob/master/src/net/url/url.go#L586)
+``` dart
+func parseAuthority(authority string) (user *Userinfo, host string, err error) {
+	i := strings.LastIndex(authority, "@")
+	if i < 0 {
+		host = parseHost(authority) #@done
+		return nil, host, nil
+	} else {
+		host = parseHost(authority[i+1:]) #@done
+	}
+
+	userinfo := authority[:i]
+	if !validUserinfo(userinfo) {
+		return nil, "", errors.New("net/url: invalid userinfo")
+	}
+	if !strings.Contains(userinfo, ":") {
+		unescape(userinfo, encodeUserPassword) #@done
+		user = User(userinfo)
+	} else {
+		username, password, _ := strings.Cut(userinfo, ":")
+		unescape(username, encodeUserPassword) #@done
+		unescape(password, encodeUserPassword) #@done
+		user = UserPassword(username, password)
+	}
+	return user, host, nil
+}
+```
+
 ## Method chaining
 move error to suffix have other benefit that separate return value and error. now we can Method chaining. 
 Some people dislike Method Chaining but I like it.
