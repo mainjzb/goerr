@@ -122,8 +122,8 @@ func parseAuthority(authority string) (user *Userinfo, host string, err error) {
 		user = User(userinfo)
 	} else {
 		username, password, _ := strings.Cut(userinfo, ":")
-		unescape(username, encodeUserPassword) #@done
-		unescape(password, encodeUserPassword) #@done
+		username = unescape(username, encodeUserPassword) #@done
+		password = unescape(password, encodeUserPassword) #@done
 		user = UserPassword(username, password)
 	}
 	return user, host, nil
