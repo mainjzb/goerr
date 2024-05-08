@@ -47,3 +47,4 @@ n := io.Write(x) #@must     // 5. panic err
 4. wrap additional information. maybe more easy way is  `#@wrap` equal to `#@wrap("io.Wirite err:")`, omit parameter make it easier for people to handle error instead of ignore error.
 5. Many third-party libraries have `MustXxx()` and `Xxx()` two sets api. Now we just need only one. Just like `go` keyword, we no longer need sync and async functions.
 
+People should reduce the discussion of compilation details. Focusing on achieving agreement on lang style.
