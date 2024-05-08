@@ -3,7 +3,7 @@ English is not my native language, so it may be a bit strange for you to read th
 
 Make `#` as error symbol, I believe people can learn and understand it quickly. (Maybe other symbol replace it)
 
-`#@` as handler error symbol. Help people read code.
+`#@` as handler error symbol. Help people read code and simplify code.
 
 I have read [go/issues/21161](https://github.com/golang/go/issues/21161)
 My imaging is something similar to that.
