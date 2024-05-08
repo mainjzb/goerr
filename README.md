@@ -27,8 +27,9 @@ now
 n := io.Write(x) #err       // 1. err as value
 n := io.Write(x) #@ignore   // 2. ignore error
 
-n := io.Write(x) #@up     //  3. return error immediately、
+n := io.Write(x) #@done     //  3. return error immediately、
 
 n := io.Write(x) #@wrap("tcp closed: %w") // 4. wrap additional information
 ```
+
 
