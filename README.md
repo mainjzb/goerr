@@ -1,0 +1,2 @@
+# goerr
+golang error design
