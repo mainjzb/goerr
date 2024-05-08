@@ -118,7 +118,7 @@ func parseAuthority(authority string) (user *Userinfo, host string, err error) {
 		return nil, "", errors.New("net/url: invalid userinfo")
 	}
 	if !strings.Contains(userinfo, ":") {
-		unescape(userinfo, encodeUserPassword) #@done
+		userinfo = unescape(userinfo, encodeUserPassword) #@done
 		user = User(userinfo)
 	} else {
 		username, password, _ := strings.Cut(userinfo, ":")
