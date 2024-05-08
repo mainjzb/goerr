@@ -46,7 +46,7 @@ n := io.Write(x) #@must     // 5. panic err
 ```
 
 1. err as value. everything is like before. just error at suffix.
-2. ignore error. make it no easier to ignore error than before. Encourage people with additional information.
+2. ignore error. make it no easier to ignore error than before. Encourage people with additional information. `igmore` 6 char more than other 4 char
 3. return error immediately. Many times, Especially in libiary. we just need returen error nothing need to do. For example: [url.parseAuthority](https://github.com/golang/go/blob/master/src/net/url/url.go#L586)
 4. wrap additional information. maybe more easy way is  `#@wrap` equal to `#@wrap("io.Wirite err:")`, omit parameter make it easier for people to handle error instead of ignore error.
 5. Many third-party libraries have `MustXxx()` and `Xxx()` two sets api. Now we just need only one. Just like `go` keyword, we no longer need sync and async functions.
