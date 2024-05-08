@@ -1,4 +1,4 @@
-# goerr
+# `#err` error suffix design
 English is not my native language, so it may be a bit strange for you to read this article
 
 Make `#` as error symbol, I believe people can learn and understand it quickly. (Maybe other symbol replace it)
